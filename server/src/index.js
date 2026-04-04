@@ -29,7 +29,7 @@ app.use("/api", routes);
 app.use(express.static(clientDistPath));
 
 // Catch-all for SPA navigation
-app.get("*", (request, response, next) => {
+app.get("(.*)", (request, response, next) => {
   if (request.url.startsWith("/api")) {
     return next();
   }
