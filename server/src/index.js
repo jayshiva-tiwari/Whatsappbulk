@@ -28,9 +28,9 @@ app.use("/api", routes);
 // Serve Static Files (Client)
 app.use(express.static(clientDistPath));
 
-// Catch-all for SPA navigation
-app.get("(.*)", (request, response, next) => {
-  if (request.url.startsWith("/api")) {
+// Catch-all for SPA navigation: Serve index.html for all non-API routes
+app.use((request, response, next) => {
+  if (request.path.startsWith("/api")) {
     return next();
   }
   response.sendFile(path.join(clientDistPath, "index.html"));
