@@ -16,6 +16,7 @@ import { SectionTitle } from "./components/SectionTitle";
 import { StatCard } from "./components/StatCard";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
+import { SEO } from "./components/SEO";
 import { downloadVcf, fetchConfig, processSpreadsheet } from "./lib/api";
 
 const FALLBACK_DEFAULTS = {
@@ -140,8 +141,30 @@ function App() {
     }
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many contacts can I add to a WhatsApp group?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WhatsApp allows up to 1024 participants per group. Our tool splits your list into safe batches." }
+      },
+      {
+        "@type": "Question", 
+        "name": "What file formats are supported?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We support .xlsx, .xls (Excel), and .csv files." }
+      }
+    ]
+  };
+
   return (
     <div className="grid-pattern min-h-screen">
+      <SEO 
+        title="Bulk WhatsApp Contact Generator | Add Multiple Contacts"
+        description="Convert Excel to WhatsApp contacts instantly. Best bulk WhatsApp contact generator to import phone numbers and send WhatsApp group bulk invite safely."
+        jsonLd={faqSchema}
+      />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Navbar />
         <header className="overflow-hidden rounded-[2rem] border border-slate-800/80 bg-slate-950/60 shadow-glow">
@@ -471,6 +494,71 @@ function App() {
                   <p className="mt-3 text-sm leading-6 text-slate-400">{item.text}</p>
                 </div>
               ))}
+            </div>
+          </section>
+
+
+          <section id="how-it-works-full" className="rounded-[2rem] border border-slate-800/80 bg-slate-950/50 p-6 shadow-glow mt-8">
+            <h2 className="font-display text-2xl font-bold text-white mb-4">How it works: A Bulk WhatsApp Contact Generator</h2>
+            <div className="space-y-4 text-slate-300">
+              <div className="flex gap-4 items-start">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-300 font-bold">1</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Upload Your File</h3>
+                  <p>Start by uploading your list of contacts. We support multiple file formats like Excel and CSV, making it easy to import phone numbers to WhatsApp.</p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-300 font-bold">2</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Process & Clean</h3>
+                  <p>Our tool cleans the numbers, removes duplicates, and generates safe batches to add multiple contacts to WhatsApp without exceeding limits.</p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-300 font-bold">3</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Export & Invite</h3>
+                  <p>Download the VCF to your phone to quickly perform a WhatsApp group bulk invite, or use the generated wa.me links as a WhatsApp bulk message tool.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="why-use" className="grid gap-8 lg:grid-cols-2 mt-8">
+            <div className="glass-panel rounded-[2rem] border border-slate-800/80 p-6 shadow-glow">
+              <h2 className="font-display text-2xl font-bold text-white mb-4">Why use this tool?</h2>
+              <ul className="space-y-3 text-slate-300 list-disc pl-5">
+                <li><strong>Ultimate Bulk WhatsApp Contact Generator:</strong> Skip repetitive manual saving and convert Excel to WhatsApp contacts in seconds.</li>
+                <li><strong>Safe Batching:</strong> Avoid group creation errors with automatic splitting. Wondering how to add 1000 contacts to WhatsApp group at once? Batching is the reliable answer.</li>
+                <li><strong>Privacy Focused:</strong> Everything runs securely. No numbers are permanently stored on our servers.</li>
+                <li><strong>Instant Links:</strong> Start chatting immediately without saving, acting as a lightweight WhatsApp bulk message tool.</li>
+                <li><strong>Cross-Platform VCFs:</strong> Generated contact lists work natively on both iOS and Android to smoothly import phone numbers to WhatsApp.</li>
+              </ul>
+            </div>
+
+            <div className="glass-panel rounded-[2rem] border border-slate-800/80 p-6 shadow-glow">
+              <h2 className="font-display text-2xl font-bold text-white mb-4">Supported File Formats</h2>
+              <p className="text-slate-300 mb-4">We support standard spreadsheet files so you don't have to change your workflow:</p>
+              <ul className="space-y-2 text-slate-300">
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> <strong>.xlsx</strong> (Modern Microsoft Excel)</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> <strong>.xls</strong> (Legacy Microsoft Excel)</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> <strong>.csv</strong> (Comma-Separated Values)</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="faq" className="rounded-[2rem] border border-slate-800/80 bg-slate-950/50 p-6 shadow-glow mt-8">
+            <h2 className="font-display text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-white">How many contacts can I add to a WhatsApp group?</h3>
+                <p className="text-slate-300 mt-1">WhatsApp allows up to 1024 participants per group. Our tool splits your list into safe batches to ensure a smooth WhatsApp group bulk invite process.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">What file formats are supported?</h3>
+                <p className="text-slate-300 mt-1">We support .xlsx, .xls (Excel), and .csv files.</p>
+              </div>
             </div>
           </section>
         </main>
