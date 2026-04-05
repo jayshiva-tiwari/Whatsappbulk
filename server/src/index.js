@@ -69,6 +69,21 @@ app.use((request, response, next) => {
   response.sendFile(path.join(clientDistPath, "index.html"));
 });
 
+// Sitemap route - add this before your React catch-all
+app.get('/sitemap.xml', (req, res) => {
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://whatsappbulk-lvvt.onrender.com/</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+  res.header('Content-Type', 'application/xml');
+  res.send(sitemap);
+});
+
 // Error Handler
 app.use((error, _request, response, _next) => {
   const statusCode = error instanceof AppError ? error.statusCode : 500;
